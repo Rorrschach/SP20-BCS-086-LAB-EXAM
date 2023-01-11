@@ -13,7 +13,6 @@ router.post("/add-post", function (req, res, next) {
 
   Post.save(function (err) {
     if (err) throw err;
-    res.redirect("/add-post");
   });
 });
 
@@ -27,7 +26,7 @@ router.get("/posts/:page", function (req, res, next) {
     .exec(function (err, posts) {
       Post.count().exec(function (err, count) {
         if (err) return next(err);
-        res.render("main/post", {
+        res.render("main/posts", {
           posts: posts,
           current: page,
           pages: Math.ceil(count / perPage),
